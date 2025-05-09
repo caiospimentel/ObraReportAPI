@@ -3,7 +3,7 @@ const FileSync = require('lowdb/adapters/FileSync');
 const path = require('path');
 
 const file = path.resolve(__dirname, '../../db/db.json');
-const adapter = new FileSync(file);
+const adapter = new FileSync(path.resolve(__dirname, '../../db/db.json'));
 const db = low(adapter);
 
 db.defaults({ reports: [] }).write();

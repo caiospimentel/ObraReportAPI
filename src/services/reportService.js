@@ -1,4 +1,6 @@
 const { generateId } = require('../utils/idGenerator');
+const logger = require('../utils/logger');
+
 const ReportRegistry = require('../storage/lowdb');
 
 const VateProvider = require('../adapters/vateProvider');
@@ -11,7 +13,6 @@ const providerMap = {
 
 async function createReport(data) {
   const localId = generateId();
-
   const primaryName = process.env.PRIMARY_PROVIDER || 'vate';
   const secondaryName = process.env.SECONDARY_PROVIDER || 'argelor';
 
@@ -20,50 +21,74 @@ async function createReport(data) {
 
   let response, providerUsed;
 
+  logger.info(`Iniciando criação de relatório para obra_id: ${data.obra_id} usando o provedor primário "${primaryName}".`);
+
   try {
     response = await primary.createReport(data);
     providerUsed = primaryName;
-  } catch(e){
-    console.log(e.message)
-    console.warn(`Provedor primário "${primaryName}" falhou. Tentando fallback...`);
+    logger.info(`Relatório criado com sucesso usando o provedor primário "${primaryName}".`);
+  } catch (e) {
+    logger.error(`Falha ao criar relatório com o provedor primário "${primaryName}".`, e);
+    logger.info(`Tentando fallback com provedor "${secondaryName}".`);
+
     try {
       response = await secondary.createReport(data);
       providerUsed = secondaryName;
-    } catch(err) {
-      console.log(err.message)
+      logger.info(`Relatório criado com sucesso usando o fallback "${secondaryName}".`);
+    } catch (err) {
+      logger.error(`Falha também com o fallback "${secondaryName}". Nenhum provedor disponível.`, err);
       throw new Error('Nenhum provedor disponível no momento.');
     }
   }
 
+  const externalId = response.id || response.report_id;
   const mapping = {
     id: localId,
     provider: providerUsed,
-    externalId: response.id || response.report_id,
+    externalId: externalId,
     createdAt: new Date().toISOString()
   };
 
-  await ReportRegistry.saveMapping(mapping);
+  try {
+    await ReportRegistry.saveMapping(mapping);
+    logger.info(`Mapeamento salvo: localId=${localId}, provider=${providerUsed}, externalId=${externalId}`);
+  } catch (e) {
+    logger.error('Erro ao salvar o mapeamento do relatório.', e);
+    throw new Error('Erro ao salvar o relatório localmente.');
+  }
 
   return {
     localId,
-    externalId: mapping.externalId,
+    externalId,
     provider: providerUsed
   };
 }
 
 async function getReport(localId) {
+  logger.info(`Solicitada busca de relatório com localId: ${localId}`);
   const mapping = await ReportRegistry.getMappingById(localId);
-  if (!mapping) return null;
+
+  if (!mapping) {
+    logger.info(`Relatório com localId ${localId} não encontrado.`);
+    return null;
+  }
 
   const provider = providerMap[mapping.provider];
+  logger.info(`Buscando relatório no provedor "${mapping.provider}" com externalId: ${mapping.externalId}`);
   return await provider.getReport(mapping.externalId);
 }
 
 async function updateReport(localId, newData) {
+  logger.info(`Solicitada atualização de relatório com localId: ${localId}`);
   const mapping = await ReportRegistry.getMappingById(localId);
-  if (!mapping) throw new Error('Relatório não encontrado.');
+
+  if (!mapping) {
+    logger.info(`Relatório com localId ${localId} não encontrado para atualização.`);
+    throw new Error('Relatório não encontrado.');
+  }
 
   const provider = providerMap[mapping.provider];
+  logger.info(`Atualizando relatório no provedor "${mapping.provider}" com externalId: ${mapping.externalId}`);
   return await provider.updateReport(mapping.externalId, newData);
 }
 

@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  mongo-vate:
+    image: mongo
+    container_name: mongo-vate
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-vate-data:/data/db
+
+  mongo-argelor:
+    image: mongo
+    container_name: mongo-argelor
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-argelor-data:/data/db
+
+  provider-vate:
+    build:
+      context: ./provider-vate
+    container_name: provider-vate
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo-vate
+    environment:
+      - PORT=3001
+      - MONGO_URI=mongodb://mongo-vate:27017/vate-db
+
+  provider-argelor:
+    build:
+      context: ./provider-argelor
+    container_name: provider-argelor
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongo-argelor
+    environment:
+      - PORT=3002
+      - MONGO_URI=mongodb://mongo-argelor:27017/argelor-db
+
+  api-gateway:
+    build:
+      context: ./src
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - provider-vate
+      - provider-argelor
+    volumes:
+      - ./src/db:/app/db
+    environment:
+      - PRIMARY_PROVIDER=vate
+      - SECONDARY_PROVIDER=argelor
+      - PROVIDER_VATE_URL=http://provider-vate:3001
+      - PROVIDER_ARGELOR_URL=http://provider-argelor:3002
+
+volumes:
+  mongo-vate-data:
+  mongo-argelor-data:
