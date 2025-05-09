@@ -1,21 +1,19 @@
-const { Low } = require('lowdb');
-const { JSONFile } = require('lowdb/node');
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
 const path = require('path');
 
 const file = path.resolve(__dirname, '../../db/db.json');
-const adapter = new JSONFile(file);
+const adapter = new FileSync(file);
+const db = low(adapter);
 
-const db = new Low(adapter, { reports: [] }); 
+db.defaults({ reports: [] }).write();
 
 module.exports = {
-  async saveMapping(mapping) {
-    await db.read();
-    db.data.reports.push(mapping);
-    await db.write();
+  saveMapping(mapping) {
+    db.get('reports').push(mapping).write();
   },
 
-  async getMappingById(localId) {
-    await db.read();
-    return db.data.reports.find(r => r.id === localId);
+  getMappingById(localId) {
+    return db.get('reports').find({ id: localId }).value();
   }
 };
