@@ -1,0 +1,10 @@
+{
+    "watch": ["."],
+    "ignore": [
+      "storage/db.json",
+      "**/storage/db.json",
+      "**/*.json"
+    ],
+    "ext": "js,json"
+  }
+  

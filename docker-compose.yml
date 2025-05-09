@@ -51,7 +51,7 @@ services:
       - provider-vate
       - provider-argelor
     volumes:
-      - ./src/db:/app/db
+      - ./src/storage:/app/storage
     environment:
       - PRIMARY_PROVIDER=vate
       - SECONDARY_PROVIDER=argelor

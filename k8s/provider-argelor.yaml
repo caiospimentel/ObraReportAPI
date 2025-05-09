@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: provider-argelor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: provider-argelor
+  template:
+    metadata:
+      labels:
+        app: provider-argelor
+    spec:
+      containers:
+        - name: provider-argelor
+          image: provider-argelor:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3002
+          env:
+            - name: PORT
+              value: "3002"
+            - name: MONGO_URI
+              value: mongodb://mongo-argelor:27017/provider-argelor-db
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: provider-argelor
+spec:
+  selector:
+    app: provider-argelor
+  ports:
+    - protocol: TCP
+      port: 3002
+      targetPort: 3002

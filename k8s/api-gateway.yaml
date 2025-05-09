@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: api-gateway:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: db-volume
+              mountPath: /app/db
+          env:
+            - name: PRIMARY_PROVIDER
+              value: vate
+            - name: SECONDARY_PROVIDER
+              value: argelor
+            - name: PROVIDER_VATE_URL
+              value: http://provider-vate:3001
+            - name: PROVIDER_ARGELOR_URL
+              value: http://provider-argelor:3002
+      volumes:
+        - name: db-volume
+          hostPath:
+            path: /tmp/obrareport-db
+            type: DirectoryOrCreate
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: NodePort
