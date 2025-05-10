@@ -18,7 +18,7 @@ Antes de rodar o projeto, certifique-se de que as seguintes dependências estão
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 ObraReportAPI/
@@ -41,7 +41,7 @@ ObraReportAPI/
 ```
 ---
 
-## ⚙️ Volumes e Persistência
+## Volumes e Persistência
 
 - A API usa `lowdb` para rastrear onde cada RDO foi armazenado.
 - O arquivo `db.json` é persistido dentro do container, na pasta `src/storage/`.
@@ -102,7 +102,32 @@ Os dois provedores são simulados com Express e persistem dados via MongoDB. O f
 
 ### POST `/reports`
 
-Cria um novo RDO em um dos provedores:
+Cria um novo Relatório Diário de Obra (RDO) em um dos provedores disponíveis. A API tenta o provedor primário; se falhar, realiza o fallback automaticamente para o secundário.
+
+#### Corpo da requisição
+```json
+{
+  "obra_id": "OBRA-001",
+  "data": "2025-05-09",
+  "clima": "ensolarado",
+  "descricao": "Etapa de fundação iniciada",
+  "equipe": ["João", "Ana"]
+}
+```
+#### Resposta de sucesso
+```json
+{
+  "id": "local-uuid",
+  "externalId": "id-no-provedor",
+  "provider": "vate"
+}
+```
+#### Erro
+```json
+{
+  "error": "Nenhum provedor disponível no momento."
+}
+```
 
 ```bash
 curl -X POST http://localhost:3000/reports   -H "Content-Type: application/json"   -d '{
@@ -114,9 +139,24 @@ curl -X POST http://localhost:3000/reports   -H "Content-Type: application/json"
   }'
 ```
 
-### GET `/reports/:id`
+### GET `/reports/:id` -> /reports/:localId`
 
-Recupera o mapeamento local + provedor do RDO:
+Retorna o mapeamento de um RDO previamente criado, mostrando qual provedor foi utilizado e qual é o ID externo.
+
+#### Resposta de sucesso
+```json
+{
+  "id": "local-uuid",
+  "externalId": "id-no-provedor",
+  "provider": "argelor"
+}
+```
+#### Erro
+```json
+{
+  "error": "Relatório não encontrado"
+}
+```
 
 ```bash
 curl http://localhost:3000/reports/<localId>
@@ -124,7 +164,31 @@ curl http://localhost:3000/reports/<localId>
 
 ### PUT `/reports/:id`
 
-Atualiza o conteúdo de um RDO no provedor:
+Atualiza um relatório existente diretamente no provedor original onde ele foi criado.
+
+#### Corpo da requisição
+```json
+{
+  "descricao": "Atualização da etapa de fundação",
+  "clima": "nublado",
+  "data": "2025-05-10",
+  "equipe": ["João", "Ana", "Carlos"]
+}
+```
+#### Resposta de sucesso
+```json
+{
+  "status": "updated",
+  "id": "id-no-provedor"
+}
+```
+
+#### Erro
+```json
+{
+  "error": "Relatório não encontrado"
+}
+```
 
 ```bash
 curl -X PUT http://localhost:3000/reports/<localId>   -H "Content-Type: application/json"   -d '{
@@ -132,13 +196,13 @@ curl -X PUT http://localhost:3000/reports/<localId>   -H "Content-Type: applicat
     "clima": "nublado"
   }'
 ```
-
 ---
 
-## Limpando imagens locais (opcional)
+## 🧪 Simulação de falhas
 
-```bash
-docker image prune -f
+Para simular falha no provedor primário, envie o cabeçalho HTTP:
+
 ```
-
----
+X-Fail: true
+```
+A API retornará erro 500 simulado, acionando o fallback para o segundo provedor. O primário e secundário estão configurados no arquivo .env da api.  

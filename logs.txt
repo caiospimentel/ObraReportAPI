@@ -1,0 +1,187 @@
+[2025-05-10T13:00:56.244Z] [INFO] Iniciando criação de relatório para obra_id: OBRA-002 usando o provedor primário "vate".
+[2025-05-10T13:00:56.294Z] [INFO] Relatório criado com sucesso usando o provedor primário "vate".
+[2025-05-10T13:00:56.295Z] [INFO] Mapeamento salvo: localId=rdo-8033253b-3db7-4a13-b945-5e5ce473958c, provider=vate, externalId=681f4e08e0ed2488fdd9ec6a
+[2025-05-10T13:22:06.781Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:22:06.785Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:22:06.796Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:22:07.117Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:33:43.330Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:33:43.333Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:33:43.340Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:33:43.596Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:37:07.057Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:37:07.262Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:37:07.264Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:37:07.270Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:38:23.162Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:38:23.165Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:38:23.172Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:38:23.405Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:39:54.229Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:39:54.233Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:39:54.245Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:39:54.467Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:45:50.264Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:45:50.267Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:45:50.275Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:45:50.541Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:53:26.706Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:53:26.714Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:53:26.734Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:53:26.961Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:55:14.277Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:55:14.280Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:55:14.287Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:55:53.102Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:55:53.105Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:55:53.112Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:55:53.798Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:57:38.934Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:57:38.944Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:57:38.966Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:57:39.191Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:58:15.649Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:58:15.651Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:58:15.665Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:58:15.892Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:59:22.370Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:59:22.372Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:59:22.372Z] [INFO] Provedor primário "vate" falhou: Falha no primário
+[2025-05-10T13:59:22.373Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T13:59:22.373Z] [INFO] Provedor primário "vate" falhou: Erro 1
+[2025-05-10T13:59:22.373Z] [ERROR] Fallback "argelor" também falhou.
+[STACK] Error: Erro 2
+    at Object.<anonymous> (/home/kali/Documents/ObraReportAPI/src/tests/unit/reportService.test.js:68:52)
+    at Promise.then.completed (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:444:34)
+[2025-05-10T13:59:22.589Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:05:36.490Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:05:36.567Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:05:36.569Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:05:36.569Z] [INFO] Provedor primário "vate" falhou: Falha no primário
+[2025-05-10T14:05:36.569Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:05:36.570Z] [INFO] Provedor primário "vate" falhou: Erro 1
+[2025-05-10T14:05:36.570Z] [ERROR] Fallback "argelor" também falhou.
+[STACK] Error: Erro 2
+    at Object.<anonymous> (/home/kali/Documents/ObraReportAPI/src/tests/unit/reportService.test.js:68:52)
+    at Promise.then.completed (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:444:34)
+[2025-05-10T14:06:53.999Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:06:54.085Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:06:54.085Z] [INFO] Provedor primário "vate" falhou: Falha no primário
+[2025-05-10T14:06:54.086Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:06:54.086Z] [INFO] Provedor primário "vate" falhou: Erro 1
+[2025-05-10T14:06:54.086Z] [ERROR] Fallback "argelor" também falhou.
+[STACK] Error: Erro 2
+    at Object.<anonymous> (/home/kali/Documents/ObraReportAPI/src/tests/unit/reportService.test.js:68:52)
+    at Promise.then.completed (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:444:34)
+[2025-05-10T14:06:54.083Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:08:00.334Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:08:00.414Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:08:00.416Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:08:00.416Z] [INFO] Provedor primário "vate" falhou: Falha no primário
+[2025-05-10T14:08:00.417Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:08:00.418Z] [INFO] Provedor primário "vate" falhou: Erro 1
+[2025-05-10T14:08:00.418Z] [ERROR] Fallback "argelor" também falhou.
+[STACK] Error: Erro 2
+    at Object.<anonymous> (/home/kali/Documents/ObraReportAPI/src/tests/unit/reportService.test.js:68:52)
+    at Promise.then.completed (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:444:34)
+[2025-05-10T14:09:51.609Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:09:51.683Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:09:51.684Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:09:51.684Z] [INFO] Provedor primário "vate" falhou: Falha no primário
+[2025-05-10T14:09:51.685Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:09:51.685Z] [INFO] Provedor primário "vate" falhou: Erro 1
+[2025-05-10T14:09:51.685Z] [ERROR] Fallback "argelor" também falhou.
+[STACK] Error: Erro 2
+    at Object.<anonymous> (/home/kali/Documents/ObraReportAPI/src/tests/unit/reportService.test.js:68:52)
+    at Promise.then.completed (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:444:34)
+[2025-05-10T14:11:17.736Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:11:17.934Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:11:17.936Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:11:17.936Z] [INFO] Provedor primário "vate" falhou: Falha no primário
+[2025-05-10T14:11:17.937Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:11:17.937Z] [INFO] Provedor primário "vate" falhou: Erro 1
+[2025-05-10T14:11:17.937Z] [ERROR] Fallback "argelor" também falhou.
+[STACK] Error: Erro 2
+    at Object.<anonymous> (/home/kali/Documents/ObraReportAPI/src/tests/unit/reportService.test.js:68:52)
+    at Promise.then.completed (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/kali/Documents/ObraReportAPI/src/node_modules/jest-runner/build/runTest.js:444:34)
+[2025-05-10T14:12:22.712Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:12:22.713Z] [INFO] Provedor primário "vate" falhou: Simulated failure in VateProvider
+[2025-05-10T14:12:22.713Z] [ERROR] Fallback "argelor" também falhou.
+[STACK] Error: Simulated failure in ArgelorProvider
+    at Object.createReport (/home/kali/Documents/ObraReportAPI/src/adapters/argelorProvider.js:8:11)
+    at tryWithFallback (/home/kali/Documents/ObraReportAPI/src/services/reportService.js:23:46)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.createReport (/home/kali/Documents/ObraReportAPI/src/services/reportService.js:45:38)
+    at async createReport (/home/kali/Documents/ObraReportAPI/src/controllers/reportController.js:7:20)
+[2025-05-10T14:13:49.703Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:13:49.705Z] [INFO] Provedor primário "vate" falhou: Simulated failure in VateProvider
+[2025-05-10T14:16:22.828Z] [INFO] Criando relatório com provedor primário "vate"
+[2025-05-10T14:16:22.828Z] [INFO] Provedor primário "vate" falhou: Simulated failure in VateProvider
+[2025-05-10T14:17:15.289Z] [INFO] Criando relatório com provedor primário "argelor"
+[2025-05-10T14:17:15.291Z] [INFO] Provedor primário "argelor" falhou: Simulated failure in ArgelorProvider

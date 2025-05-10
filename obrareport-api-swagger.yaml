@@ -1,0 +1,134 @@
+
+openapi: 3.0.0
+info:
+  title: ObraReport API
+  version: 1.0.0
+  description: API Gateway para relatórios diários de obra (RDO), com fallback automático entre provedores externos.
+
+servers:
+  - url: http://localhost:3000
+    description: Ambiente local
+
+paths:
+  /reports:
+    post:
+      summary: Cria um novo RDO
+      description: Cria um relatório diário de obra (RDO) em um dos provedores disponíveis.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportInput'
+      responses:
+        '201':
+          description: RDO criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportMapping'
+        '500':
+          description: Erro interno ao tentar criar o relatório
+
+  /reports/{id}:
+    get:
+      summary: Busca um RDO
+      description: Retorna o mapeamento local e o provedor em que o RDO foi armazenado.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID local do relatório
+      responses:
+        '200':
+          description: RDO encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportMapping'
+        '404':
+          description: RDO não encontrado
+
+    put:
+      summary: Atualiza um RDO existente
+      description: Atualiza dados de um RDO em seu provedor original.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID local do relatório
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportUpdate'
+      responses:
+        '200':
+          description: RDO atualizado com sucesso
+        '404':
+          description: RDO não encontrado
+        '500':
+          description: Falha ao atualizar o RDO
+
+components:
+  schemas:
+    ReportInput:
+      type: object
+      required:
+        - obra_id
+        - data
+        - clima
+        - descricao
+        - equipe
+      properties:
+        obra_id:
+          type: string
+          example: OBRA-001
+        data:
+          type: string
+          format: date
+          example: 2025-05-09
+        clima:
+          type: string
+          example: ensolarado
+        descricao:
+          type: string
+          example: Fundação iniciada
+        equipe:
+          type: array
+          items:
+            type: string
+          example: ["João", "Ana"]
+
+    ReportMapping:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID local do relatório
+        externalId:
+          type: string
+          description: ID no provedor externo
+        provider:
+          type: string
+          description: Nome do provedor usado
+
+    ReportUpdate:
+      type: object
+      properties:
+        data:
+          type: string
+          format: date
+        clima:
+          type: string
+        descricao:
+          type: string
+        equipe:
+          type: array
+          items:
+            type: string
