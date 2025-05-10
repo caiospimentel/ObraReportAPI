@@ -1,9 +1,9 @@
 
-# ObraReport - Gerenciamento com Makefile e Minikube
+# ObraReport - API Gateway com Fallback e Deploy via Minikube
 
-A **ObraReport API** é um sistema gateway para envio e rastreamento de Relatórios Diários de Obra (RDO) que interage com provedores externos. A API foi construída com Node.js e mongoDB, e está preparada para fallback entre múltiplos provedores.
+A **ObraReport API** é um gateway de envio e rastreamento de Relatórios Diários de Obra (RDO), que interage com múltiplos provedores externos. A API foi construída com **Node.js** e **MongoDB**, e implementa fallback automático caso o provedor principal falhe.
 
-Este projeto utiliza um `Makefile` para automatizar o processo de build e deploy local com **Minikube + Kubernetes**. Com apenas um comando, você consegue subir todo o ambiente e acessar a API.
+O projeto está preparado para ser executado localmente com **Minikube** e Kubernetes, com automação via `Makefile`.
 
 ---
 
@@ -11,11 +11,15 @@ Este projeto utiliza um `Makefile` para automatizar o processo de build e deploy
 
 Antes de rodar o projeto, certifique-se de que as seguintes dependências estão instaladas:
 
-- `make`
-- `minikube`
-- `kubectl`
-- `docker` (utilizando o driver Docker no Minikube)
+- [`make`](https://www.gnu.org/software/make/)
+- [`docker`](https://docs.docker.com/get-docker/) (utilizando o driver Docker no Minikube)
+- [`minikube`](https://minikube.sigs.k8s.io/docs/start/)
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/)
 
+Versões recomendadas:
+- Node.js `>=18` -> utilizada nos containers do docker
+- Docker `>=20.10`
+- Minikube `>=1.31`
 ---
 
 ## Estrutura do Projeto
@@ -35,8 +39,23 @@ ObraReportAPI/
 ├── provider-argelor/       # Provedor externo Argelor (Express + MongoDB)
 ├── k8s/                    # Manifests Kubernetes
 ├── Makefile                # Automação de build e deploy
-├── Docker-compose/         # Descrição dos containers
+├── Docker-compose          # Descrição dos containers
+├── .env.example           # Define exemplos de configuração
 └── README.md
+
+```
+
+segue abaixo uma reprodução do .env.example para registro de como estão configuradas as variáveis de controle do servidor
+```
+PORT=3000
+
+# Provedor principal e secundário (pode alternar a ordem para testar fallback)
+PRIMARY_PROVIDER=argelor
+SECONDARY_PROVIDER=vate
+
+# Endpoints dos provedores externos
+PROVIDER_VATE_URL=http://localhost:3001
+PROVIDER_ARGELOR_URL=http://localhost:3002
 
 ```
 ---
@@ -80,24 +99,6 @@ Encerra o ambiente:
 make down
 ```
 ---
-
-## Configuração dos Provedores
-
-### provider-vate
-
-- Porta: `3001`
-- Banco: `mongodb://mongo-vate:27017/vate-db`
-- Rota principal: `POST /reports`, `GET /reports/:id`, `PUT /reports/:id`
-
-### provider-argelor
-
-- Porta: `3002`
-- Banco: `mongodb://mongo-argelor:27017/argelor-db`
-- Rota principal: `POST /daily-reports`, `GET /daily-reports/:id`, `PUT /daily-reports/:id`
-
-Os dois provedores são simulados com Express e persistem dados via MongoDB. O fallback da API funciona automaticamente caso o provedor principal falhe.
-
----
 ## Testando os Endpoints
 
 ### POST `/reports`
@@ -128,6 +129,7 @@ Cria um novo Relatório Diário de Obra (RDO) em um dos provedores disponíveis.
   "error": "Nenhum provedor disponível no momento."
 }
 ```
+#### CURL para testes
 
 ```bash
 curl -X POST http://localhost:3000/reports   -H "Content-Type: application/json"   -d '{
@@ -157,6 +159,7 @@ Retorna o mapeamento de um RDO previamente criado, mostrando qual provedor foi u
   "error": "Relatório não encontrado"
 }
 ```
+#### CURL para testes
 
 ```bash
 curl http://localhost:3000/reports/<localId>
@@ -182,13 +185,14 @@ Atualiza um relatório existente diretamente no provedor original onde ele foi c
   "id": "id-no-provedor"
 }
 ```
-
 #### Erro
+
 ```json
 {
   "error": "Relatório não encontrado"
 }
 ```
+#### CURL para testes
 
 ```bash
 curl -X PUT http://localhost:3000/reports/<localId>   -H "Content-Type: application/json"   -d '{
@@ -206,3 +210,38 @@ Para simular falha no provedor primário, envie o cabeçalho HTTP:
 X-Fail: true
 ```
 A API retornará erro 500 simulado, acionando o fallback para o segundo provedor. O primário e secundário estão configurados no arquivo .env da api.  
+
+---
+
+## Configuração dos Provedores
+
+### provider-vate
+
+- Porta: `3001`
+- Banco: `mongodb://mongo-vate:27017/vate-db`
+- Rota principal: `POST /reports`, `GET /reports/:id`, `PUT /reports/:id`
+
+### provider-argelor
+
+- Porta: `3002`
+- Banco: `mongodb://mongo-argelor:27017/argelor-db`
+- Rota principal: `POST /daily-reports`, `GET /daily-reports/:id`, `PUT /daily-reports/:id`
+
+Os dois provedores são simulados com Express e persistem dados via MongoDB. O fallback da API funciona automaticamente caso o provedor principal falhe.
+
+---
+
+## Rodando os Testes
+
+Os testes automatizados estão localizados em src/tests.
+Execute os testes a partir da pasta src com:
+```
+npx jest
+```
+---
+
+## Autoria
+
+Caio Souza Pimentel
+[LinkedIn](https://www.linkedin.com/in/caiosouzapimentel/)
+---
