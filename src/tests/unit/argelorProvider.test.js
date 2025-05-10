@@ -81,7 +81,11 @@ describe('ArgelorProvider', () => {
 
   it('updateReport - atualiza e retorna status esperado', async () => {
     const reportId = 'xyz456';
-    const updatedData = { ...reportData, descricao: 'atualizado' };
+    const updatedData = {
+      ...reportData,
+      descricao: 'atualizado',
+      externalId: reportId
+    };
     const updateResponse = { report_id: reportId, state: 'updated' };
 
     let updateBody = null;
@@ -93,7 +97,7 @@ describe('ArgelorProvider', () => {
       })
       .reply(200, updateResponse);
 
-    const result = await ArgelorProvider.updateReport(reportId, updatedData);
+    const result = await ArgelorProvider.updateReport(updatedData);
 
     expect(updateBody).toEqual({
       site: 'OBRA-123',
@@ -108,12 +112,16 @@ describe('ArgelorProvider', () => {
 
   it('updateReport - lança erro se status não for 200', async () => {
     const reportId = 'xyz456';
-    const updatedData = { ...reportData, descricao: 'erro' };
+    const updatedData = {
+      ...reportData,
+      descricao: 'erro',
+      externalId: reportId
+    };
 
     nock(BASE_URL)
       .put(`/daily-reports/${reportId}`)
       .reply(500, 'Erro inesperado');
 
-    await expect(ArgelorProvider.updateReport(reportId, updatedData)).rejects.toThrow('ArgelorProvider update failed');
+    await expect(ArgelorProvider.updateReport(updatedData)).rejects.toThrow('ArgelorProvider update failed');
   });
 });

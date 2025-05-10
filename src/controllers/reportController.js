@@ -3,7 +3,8 @@ const reportService = require('../services/reportService');
 async function createReport(req, res, next) {
   try {
     const reportData = req.body;
-    const result = await reportService.createReport(reportData);
+    const options = { headers: req.headers };
+    const result = await reportService.createReport(reportData, options);
     res.status(201).json(result);
   } catch (error) {
     console.error('Erro ao criar relatório:', error.message);
@@ -27,7 +28,8 @@ async function updateReport(req, res, next) {
   try {
     const localId = req.params.id;
     const updatedData = req.body;
-    const updated = await reportService.updateReport(localId, updatedData);
+    const options = { headers: req.headers };
+    const updated = await reportService.updateReport(localId, updatedData, options);
     res.json(updated);
   } catch (error) {
     console.error('Erro ao atualizar relatório:', error.message);

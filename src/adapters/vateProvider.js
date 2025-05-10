@@ -3,7 +3,12 @@ const fetch = require('node-fetch');
 
 const VATE_URL = process.env.PROVIDER_VATE_URL || 'http://localhost:3001';
 
-async function createReport(data) {
+async function createReport(data, headers = {}) {
+
+  if (headers['x-fail'] === 'true') {
+    throw new Error('Simulated failure in VateProvider');
+  }
+
   const body = {
     obra_id: data.obra_id,
     data: data.data,
@@ -41,19 +46,21 @@ async function getReport(id) {
   return await response.json();
 }
 
-async function updateReport(id, data) {
-  const body = {
-    obra_id: data.obra_id,
-    data: data.data,
-    clima: data.clima,
-    descricao: data.descricao,
-    equipe: data.equipe
-  };
+async function updateReport(data, headers = {}) {
+  if (headers['x-fail'] === 'true') {
+    throw new Error('Simulated failure in VateProvider');
+  }
 
-  const response = await fetch(`${VATE_URL}/reports/${id}`, {
+  const response = await fetch(`${VATE_URL}/reports/${data.externalId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
+    body: JSON.stringify({
+      obra_id: data.obra_id,
+      data: data.data,
+      clima: data.clima,
+      descricao: data.descricao,
+      equipe: data.equipe
+    })
   });
 
   if (!response.ok) {

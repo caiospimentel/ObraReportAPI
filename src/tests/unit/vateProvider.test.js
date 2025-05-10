@@ -70,10 +70,14 @@ describe('VateProvider', () => {
 
   it('updateReport - atualiza e retorna status esperado', async () => {
     const reportId = 'abc789';
-    const updatedData = { ...reportData, descricao: 'atualizado' };
+    const updatedData = {
+      ...reportData,
+      descricao: 'atualizado',
+      externalId: reportId
+    };
     const updateResponse = { id: reportId, status: 'atualizado' };
 
-    let updateBody = null;
+    let updateBody = null;;
 
     nock(BASE_URL)
       .put(`/reports/${reportId}`, (body) => {
@@ -82,20 +86,25 @@ describe('VateProvider', () => {
       })
       .reply(200, updateResponse);
 
-    const result = await VateProvider.updateReport(reportId, updatedData);
+    const result = await VateProvider.updateReport(updatedData);
 
-    expect(updateBody).toEqual(updatedData);
+    const { externalId, ...expectedBody } = updatedData;
+    expect(updateBody).toEqual(expectedBody);
     expect(result).toEqual(updateResponse);
   });
 
   it('updateReport - lança erro se status não for 200', async () => {
     const reportId = 'abc789';
-    const updatedData = { ...reportData, descricao: 'erro' };
+    const updatedData = {
+      ...reportData,
+      descricao: 'erro',
+      externalId: reportId
+    };
 
     nock(BASE_URL)
       .put(`/reports/${reportId}`)
       .reply(500, 'Erro inesperado');
 
-    await expect(VateProvider.updateReport(reportId, updatedData)).rejects.toThrow('VateProvider update failed');
+    await expect(VateProvider.updateReport(updatedData)).rejects.toThrow('VateProvider update failed');
   });
 });

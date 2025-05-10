@@ -28,7 +28,7 @@ describe('ReportController', () => {
 
       await ReportController.createReport(req, res, next);
 
-      expect(reportService.createReport).toHaveBeenCalledWith(req.body);
+      expect(reportService.createReport).toHaveBeenCalledWith(req.body, { headers: undefined });
       expect(res.status).toHaveBeenCalledWith(201);
       expect(res.json).toHaveBeenCalledWith(fakeResult);
     });
@@ -76,7 +76,7 @@ describe('ReportController', () => {
 
       await ReportController.updateReport(req, res, next);
 
-      expect(reportService.updateReport).toHaveBeenCalledWith('local-123', req.body);
+      expect(reportService.updateReport).toHaveBeenCalledWith('local-123', req.body, { headers: undefined });
       expect(res.json).toHaveBeenCalledWith(fakeUpdate);
     });
 
