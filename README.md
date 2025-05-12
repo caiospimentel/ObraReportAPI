@@ -20,7 +20,7 @@ Versões recomendadas:
 - Docker `>=20.10`
 - Minikube `>=1.31`
 
-Este projeto foi desenvolvido e testado primariamente em ambientes Linux, utilizando automações via `Makefile` e ferramentas como `Minikube`.  
+### Este projeto foi desenvolvido e testado primariamente em ambientes Linux, utilizando automações via `Makefile` e ferramentas como `Minikube`.  
 No entanto, todas as tecnologias utilizadas (Node.js, MongoDB, Docker, Kubernetes) são **agnósticas de sistema operacional**, funcionando também em Windows e macOS. Dessa forma, caso necessário, referir à seção Instalação manual (sem Kubernetes) caso não seja possível utilizar as automações aqui descritas.
 ---
 
@@ -214,7 +214,7 @@ curl -X PUT http://localhost:3000/reports/<localId>   -H "Content-Type: applicat
 ```
 ---
 
-## 🧪 Simulação de falhas
+## Simulação de falhas
 
 Para simular falha no provedor primário, envie o cabeçalho HTTP:
 
