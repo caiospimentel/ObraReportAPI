@@ -21,7 +21,7 @@ Versões recomendadas:
 - Minikube `>=1.31`
 
 ### Este projeto foi desenvolvido e testado primariamente em ambientes Linux, utilizando automações via `Makefile` e ferramentas como `Minikube`.  
-No entanto, todas as tecnologias utilizadas (Node.js, MongoDB, Docker, Kubernetes) são **agnósticas de sistema operacional**, funcionando também em Windows e macOS. Dessa forma, caso necessário, referir à seção Instalação manual (sem Kubernetes) caso não seja possível utilizar as automações aqui descritas.
+### No entanto, todas as tecnologias utilizadas (Node.js, MongoDB, Docker, Kubernetes) são **agnósticas de sistema operacional**, funcionando também em Windows e macOS. Dessa forma, caso necessário, referir à seção Instalação manual (sem Kubernetes) caso não seja possível utilizar as automações aqui descritas.
 ---
 
 ## Estrutura do Projeto
