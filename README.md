@@ -14,12 +14,14 @@ Antes de rodar o projeto, certifique-se de que as seguintes dependências estão
 - [`make`](https://www.gnu.org/software/make/)
 - [`docker`](https://docs.docker.com/get-docker/) (utilizando o driver Docker no Minikube)
 - [`minikube`](https://minikube.sigs.k8s.io/docs/start/)
-- [`kubectl`](https://kubernetes.io/docs/tasks/tools/)
 
 Versões recomendadas:
 - Node.js `>=18` -> utilizada nos containers do docker
 - Docker `>=20.10`
 - Minikube `>=1.31`
+
+Este projeto foi desenvolvido e testado primariamente em ambientes Linux, utilizando automações via `Makefile` e ferramentas como `Minikube`.  
+No entanto, todas as tecnologias utilizadas (Node.js, MongoDB, Docker, Kubernetes) são **agnósticas de sistema operacional**, funcionando também em Windows e macOS. Dessa forma, caso necessário, referir à seção Instalação manual (sem Kubernetes) caso não seja possível utilizar as automações aqui descritas.
 ---
 
 ## Estrutura do Projeto
@@ -98,6 +100,16 @@ Encerra o ambiente:
 ```bash
 make down
 ```
+---
+## Instalação manual (sem Kubernetes)
+Você pode rodar o projeto sem utilizar Minikube, bastando iniciar manualmente as aplicações e o MongoDB localmente.
+Para isso, instale manualmente as dependências locais de cada servidor node, rodando o comando
+```bash
+npm install
+```
+Para que os servidores funcionem corretamente, é necessária uma instância do mongoDB na porta 27017, de forma que isso também deve ser providenciado. (Na versão com kubernetes, o deploy do mongo é feito junto ao dos servidores)
+Então, cada serviço deve ser iniciado de maneira separada.
+
 ---
 ## Testando os Endpoints
 
@@ -238,6 +250,18 @@ Execute os testes a partir da pasta src com:
 ```
 npx jest
 ```
+---
+
+## Tecnologias Utilizadas
+
+- **Node.js**: Backend da API Gateway e dos provedores
+- **Express**: Framework leve para os servidores HTTP
+- **MongoDB**: Banco de dados NoSQL
+- **Docker**: Criação de ambientes isolados
+- **Minikube** + **Kubernetes**: Orquestração local de contêineres
+- **Makefile**: Automação de comandos
+- **Jest**: Testes automatizados
+
 ---
 
 ## Autoria
