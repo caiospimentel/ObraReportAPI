@@ -65,7 +65,9 @@ PROVIDER_ARGELOR_URL=http://localhost:3002
 ## Volumes e Persistência
 
 - A API usa `lowdb` para rastrear onde cada RDO foi armazenado.
+- A escolha do `lowdb` foi feita para simular um banco mais "simples" e implementada com uma interface de forma que o banco possa ser atualizado sem dificuldades.
 - O arquivo `db.json` é persistido dentro do container, na pasta `src/storage/`.
+- Ambos os provedores utilizam MongoDB para armazenamento final dos dados.
 
 ---
 
